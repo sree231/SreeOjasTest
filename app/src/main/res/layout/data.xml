@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="sdfsdf"
+        android:textSize="14dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView_createdDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sdafsdfsdf"
+        android:textColor="#000"
+        android:layout_below="@+id/textView_title"
+        android:textSize="14dp">
+
+    </TextView>
+    <Switch
+        android:id="@+id/switch_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>
