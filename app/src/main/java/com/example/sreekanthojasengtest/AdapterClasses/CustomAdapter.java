@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,30 +81,59 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         Log.e(TAG, "onBindViewHolder: ");
         if (holder instanceof DataViewHolder) {
 
-            DataViewHolder h = (DataViewHolder) holder;
+            final DataViewHolder h = (DataViewHolder) holder;
             h.textViewCreatedAt.setText("Title: "+list.get(position).created_at);
             h.textViewTitle.setText("Created At: "+list.get(position).title);
-            ((DataViewHolder) holder).switchView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            ((DataViewHolder) holder).switchView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+//                    mContext = compoundButton.getContext();
+//                    bChecked=h.switchView.isChecked();
+//                    if (bChecked) {
+//
+//                        if(count>=1){
+//                            count--;
+//                            lisetener.updateCountedList(count);
+//                        }
+//
+//                    } else {
+//                        Log.e(TAG, "onCheckedChanged: "+count );
+//                        count++;
+//                        lisetener.updateCountedList(count);
+//
+//
+//                    }
+//
+//
+//                }
+//
+//
+//            });
+
+            h.layoutParent.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
-                    mContext = compoundButton.getContext();
+                public void onClick(View v) {
+
+                    boolean bChecked=h.switchView.isChecked();
+
                     if (bChecked) {
-                        count++;
-                        lisetener.updateCountedList(count);
-                        Toast.makeText(mContext, "Checked"+count, Toast.LENGTH_LONG).show();
-                    } else {
-                        Log.e(TAG, "onCheckedChanged: "+count );
+                        h.switchView.setChecked(false);
+
                         if(count>=1){
                             count--;
                             lisetener.updateCountedList(count);
                         }
-                        Toast.makeText(mContext, "Unchecked", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        h.switchView.setChecked(true);
+                        count++;
+                        lisetener.updateCountedList(count);
+
+
+
                     }
 
-
                 }
-
-
             });
 
         } else {
@@ -131,12 +162,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView textViewTitle;
         TextView textViewCreatedAt;
         Switch switchView;
+        RelativeLayout layoutParent;
 
         public DataViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewCreatedAt = itemView.findViewById(R.id.textView_createdDate);
             textViewTitle = itemView.findViewById(R.id.textView_title);
             switchView = itemView.findViewById(R.id.switch_view);
+            layoutParent = itemView.findViewById(R.id.layout_parent);
         }
     }
 
